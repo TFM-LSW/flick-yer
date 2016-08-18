@@ -11,7 +11,7 @@ describe('Service: flickrFeedService', function () {
   beforeEach(inject(function (_flickrFeedService_) {
     flickrFeedService = _flickrFeedService_;
   }));
-  
+
   beforeEach(inject(function($injector) {
     httpBackend = $injector.get('$httpBackend');
   }));
@@ -33,6 +33,7 @@ describe('Service: flickrFeedService', function () {
       });
     flickrFeedService.getFeed('potato');
     httpBackend.flush();
+    expect(flickrFeedService.feedData).toEqual(jasmine.any(Object));
     expect(flickrFeedService.feedData.generator).toEqual('https://www.flickr.com/');
     expect(flickrFeedService.feedData.items).toEqual(jasmine.any(Array));
   }));

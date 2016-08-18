@@ -18,11 +18,16 @@ angular
     'ngTouch',
     'pto.social.common'
   ])
+  .constant(
+    'BREAKPOINTS', {
+      'desktop': 800
+    }
+  )
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as socialCtlr'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

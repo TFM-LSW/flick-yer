@@ -1,0 +1,18 @@
+$bkPoint-Desktop: 800px;
+
+
+.hideOnDesktop{
+    @media all and (min-width: $bkPoint-Desktop) {
+        display: none;
+    };
+};
+
+.hideOnTablet {
+    @media all and (max-width: $bkPoint-Desktop - 1) {
+        display: none;
+    };
+};
+
+.list-horizontal {
+    @include horizontal-list-item(10px, left);
+}
