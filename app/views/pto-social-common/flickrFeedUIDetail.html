@@ -1,0 +1,9 @@
+<div class="pto-social_flickr-image" ng-style="{'background-image': 'url(' + model.image + ')'}"></div>
+<div class="pto-social_flickr-info">
+    <h2>{{model.title}}</h2>
+    <small class="hideOnDesktop">Published {{model.formattedDate}} at {{model.formattedTime}}<br></small>
+
+    <small><a ng-href="https://www.flickr.com/photos/{{model.authorId}}" target="_blank">{{model.authorName}}</a></small>
+    <small class="hideOnTablet">Published {{model.formattedDate}} at {{model.formattedTime}}</small>
+    <small><a href="{{model.link}}" target="_blank">View on Flickr</a></small>
+</div>

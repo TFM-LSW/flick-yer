@@ -9,10 +9,15 @@
 angular.module('pto.social.common')
   .directive('flickrFeedUiDetail', function () {
     return {
-      template: '<div></div>',
+      templateUrl: 'views/pto-social-common/flickrFeedUIDetail.html',
       restrict: 'E',
-      link: function postLink(scope, element) {
-        element.text('this is the flickrFeedUIDetail directive');
+      scope: {
+        model: '=ngModel'
+      },
+      controllerAs: 'flkrUiDetailCtlr',
+      controller: function ($scope) {
+        var vm = this;
+        vm.model = $scope.model;
       }
     };
   });

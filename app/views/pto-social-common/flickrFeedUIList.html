@@ -1,17 +1,16 @@
-<article class="pto-social_flickr-feed" ng-repeat="item in flkrUiListCtlr.feedList track by $index">
-    <div class="pto-social_flickr-image" ng-style="{'background-image': 'url(' + item.media.m + ')'}"></div>
-    <div class="pto-social_flickr-info">
-        <h2>{{item.title}}</h2>
-        <small class="hideOnDesktop">Published {{flkrUiListCtlr.getFormattedDate(item.published)}} at {{flkrUiListCtlr.getFormattedTime(item.published)}}<br></small>
-        <small><a ng-href="https://www.flickr.com/photos/{{item.author_id}}" target="_blank">{{flkrUiListCtlr.getAuthorName(item.author)}}</a></small>
-        <small class="hideOnTablet">Published {{flkrUiListCtlr.getFormattedDate(item.published)}} at {{flkrUiListCtlr.getFormattedTime(item.published)}}</small>
-        <small><a href="{{item.link}}" target="_blank">View on Flickr</a></small>
-        
-        
-        <!--<ul>
-            <li><a ng-href="https://www.flickr.com/photos/{{item.author_id}}" target="_blank">{{flkrUiListCtlr.getAuthorName(item.author)}}</a></li>
-            <li class="hideOnTablet">Published {{flkrUiListCtlr.getFormattedDate(item.published)}} at {{flkrUiListCtlr.getFormattedTime(item.published)}}</li>
-            <li><a href="{{item.link}}" target="_blank">View on Flickr</a></li>
-        </ul>-->
-    </div>
-</article>
+<section ng-show="!flkrUiListCtlr.showDetail">
+    <article class="pto-social_flickr-feed" ng-repeat="item in flkrUiListCtlr.feedListFormatted track by $index">
+        <div class="pto-social_flickr-image" ng-click="flkrUiListCtlr.gotoDetail(item)" ng-style="{'background-image': 'url(' + item.image + ')'}"></div>
+        <div class="pto-social_flickr-info">
+            <h2>{{item.title}}</h2>
+            <small class="hideOnDesktop">Published {{item.formattedDate}} at {{item.formattedTime}}<br></small>
+            <small><a ng-href="https://www.flickr.com/photos/{{item.authorId}}" target="_blank">{{item.authorName}}</a></small>
+            <small class="hideOnTablet">Published {{item.formattedDate}} at {{item.formattedTime}}</small>
+            <small><a href="{{item.link}}" target="_blank">View on Flickr</a></small>
+        </div>
+    </article>
+</section>
+
+<flickr-feed-ui-detail ng-show="flkrUiListCtlr.showDetail" ng-model="flkrUiListCtlr.selectedDetail"></flickr-feed-ui-detail>
+
+<button ng-click="flkrUiListCtlr.closeDetail()" ng-show="flkrUiListCtlr.showDetail">Back</button>

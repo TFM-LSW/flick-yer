@@ -17,6 +17,9 @@ angular.module('pto.social.common')
       controllerAs: 'flkrUiListCtlr',
       controller: function ($scope) {
         var vm = this;
+        vm.showDetail = false;
+        vm.feedListFormatted = [];
+        vm.selectedDetail = {};
         
         $timeout(function() {
           vm.tags = $scope.tags;
@@ -27,6 +30,7 @@ angular.module('pto.social.common')
           vm.apiFailure = false;
           return flickrFeedService.getFeed(vm.tags.toString()).then(function(data) {
             vm.feedList = data;
+            reformatList();
             vm.apiFailure = false;
           }, function () {
             vm.apiFailure = true;
@@ -35,27 +39,30 @@ angular.module('pto.social.common')
           });
         };
 
-        var MMMM = ['\x00', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        function reformatList () {
+          for (var index = 0; index < vm.feedList.length; index++) {
+            var element = vm.feedList[index];
+            var newItem = {
+              formattedDate: flickrFeedService.getFormattedDate(element.published),
+              formattedTime: flickrFeedService.getFormattedTime(element.published),
+              authorName: flickrFeedService.getAuthorName(element.author),
+              authorId: element.author_id,
+              title: element.title,
+              link: element.link,
+              image: element.media.m
+            };
+            
+            vm.feedListFormatted[index] = newItem;
+          }
+        }
 
-        vm.getFormattedDate = function (publishedObj) {
-          var time = new Date(publishedObj);
-          var date = time.getDate();
-          var month = MMMM[time.getMonth()];
-          var year = time.getFullYear();
-          var display = date + ' ' + month + ' ' + year;
-
-          return display;
+        vm.gotoDetail = function (item) {
+          vm.showDetail = true;
+          vm.selectedDetail = item;
         };
 
-        vm.getFormattedTime = function (publishedObj) {
-          var time = new Date(publishedObj);
-          return time.getHours() + ':' + time.getMinutes();
-        };
-
-        vm.getAuthorName = function (nameString) {
-          var start = parseInt(nameString.indexOf(' (')) +2;
-          var name = nameString.slice(start, nameString.length-1);
-          return name;
+        vm.closeDetail = function () {
+          vm.showDetail = false;
         };
       }
     };
