@@ -21,6 +21,7 @@ angular.module('pto.social.common')
         vm.showDetail = false;
         vm.feedListFormatted = [];
         vm.selectedDetail = {};
+        vm.loadingFlickrFeed = true;
         
         $timeout(function() {
           vm.tags = $scope.tags;
@@ -31,12 +32,15 @@ angular.module('pto.social.common')
           vm.apiFailure = false;
           return flickrFeedService.getFeed(vm.tags.toString()).then(function(data) {
             vm.feedList = data;
+            vm.loadingFlickrFeed = false;
             reformatList();
             vm.apiFailure = false;
           }, function () {
             vm.apiFailure = true;
+            vm.loadingFlickrFeed = false;
           }).catch(function() {
             vm.apiFailure = true;
+            vm.loadingFlickrFeed = false;
           });
         };
 
@@ -63,8 +67,6 @@ angular.module('pto.social.common')
         vm.gotoDetail = function (item) {
           vm.showDetail = true;
           vm.selectedDetail = item;
-          //TweenMax.set(vm.element, { alpha:0 });
-          //TweenMax.to(vm.element, 1, { autoAlpha:1 });
         };
 
         vm.closeDetail = function () {

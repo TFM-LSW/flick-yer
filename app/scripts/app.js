@@ -16,7 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'pto.social.common'
+    'pto.social.common' // Ideally this would be a Bower dependency
   ])
   .constant('TweenMax', window.TweenMax)
   .config(function ($routeProvider, $locationProvider, $compileProvider, $httpProvider) {

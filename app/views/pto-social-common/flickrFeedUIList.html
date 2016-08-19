@@ -1,3 +1,4 @@
+<p ng-if="flkrUiListCtlr.loadingFlickrFeed">Loading feed...</p>
 <section class="pto-social_flickr-feed-container" ng-show="!flkrUiListCtlr.showDetail">
     <article class="pto-social_flickr-feed-row" ng-repeat="item in flkrUiListCtlr.feedListFormatted track by $index">
         <div class="pto-social_flickr-image" ng-click="flkrUiListCtlr.gotoDetail(item)" ng-style="{'background-image': 'url(' + item.image + ')'}"></div>

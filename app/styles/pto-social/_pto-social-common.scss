@@ -2,24 +2,22 @@
 @import "globals.scss";
 
 .pto-social_flickr-feed {
-    
+    color: #f5dbe7;
+    font-family: $ptoFontfamily;
+    font-size: 0.9em;
+    line-height: 1.3em;
 }
 .pto-social_flickr-feed-container {
     position: relative;
-    display: inline-block;
 }
 .pto-social_flickr-feed-row {
     display: inline-block;
     position: relative;
     width: 100%;
-    max-height: 100px;
-    min-width: 450px;
-    font-family: $ptoFontfamily;
+    min-height: 100px;
     background-color: #AD2B65;
     margin-bottom: 10px;
-    color: #f5dbe7;
-    font-size: 0.9em;
-    line-height: 1.3em;
+    
     h2 {
         font-family: Arial, Arial, _sans;
         font-size: 1.4em;
@@ -29,6 +27,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor: pointer;
     }
     img {
         float: left;
@@ -56,6 +55,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+        cursor: pointer;
     }
     .pto-social_flickr-info {
         padding-right: 20px;
@@ -67,13 +67,13 @@
     font-family: $ptoFontfamily;
     height: auto;
     width: calc(100% - 40px);
-    min-width: 450px;
     display: block;
     position: absolute;
     z-index: 10;
     top: 0px;
     padding: 20px;
     color: white;
+    line-height: 1.2em;
 
     a {
         color: #FFF;
@@ -85,14 +85,30 @@
     }
     ul {
         padding: 0;
+        margin-top:0;
         li {
             @include horizontal-list-item(0, left);
-            padding-right: 14px; 
+            padding-right: 14px;
+            font-size: smaller;
+            cursor: pointer;
         }
     }
-    
-
+    img {
+        float: left;
+        display: inline-block;
+        width: 100px;
+    }
     .close {
         float: right;
     }
 }
+    .pto-social_flickr-image_detail {
+        width:240px;
+        height: 240px;
+        display: block;
+        float: left;
+        margin-right: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
