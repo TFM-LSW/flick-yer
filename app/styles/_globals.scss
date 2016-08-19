@@ -1,6 +1,21 @@
 $bkPoint-Desktop: 800px;
+$ptoFontfamily: Arial, Arial, _sans;
 
-
+body {
+    margin: 0;
+    padding: 0;
+}
+.content {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+}
+.container {
+	max-width: 960px;
+	height: auto;
+	margin: 0 auto;
+    position: relative;
+}
 .hideOnDesktop{
     @media all and (min-width: $bkPoint-Desktop) {
         display: none;

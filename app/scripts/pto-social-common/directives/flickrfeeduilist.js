@@ -7,12 +7,13 @@
  * # flickrFeedUIList
  */
 angular.module('pto.social.common')
-  .directive('flickrFeedUiList', function (flickrFeedService, $timeout) {
+  .directive('flickrFeedUiList', function ($timeout, flickrFeedService) {
     return {
       templateUrl: 'views/pto-social-common/flickrFeedUIList.html',
       restrict: 'EA',
       scope: {
-        tags: '='
+        tags: '=',
+        reveal: '='
       },
       controllerAs: 'flkrUiListCtlr',
       controller: function ($scope) {
@@ -46,10 +47,13 @@ angular.module('pto.social.common')
               formattedDate: flickrFeedService.getFormattedDate(element.published),
               formattedTime: flickrFeedService.getFormattedTime(element.published),
               authorName: flickrFeedService.getAuthorName(element.author),
+              /* jshint ignore:start */
               authorId: element.author_id,
+              /* jshint ignore:end */
               title: element.title,
               link: element.link,
-              image: element.media.m
+              image: element.media.m,
+              tags: element.tags.split(' ')
             };
             
             vm.feedListFormatted[index] = newItem;
@@ -59,6 +63,8 @@ angular.module('pto.social.common')
         vm.gotoDetail = function (item) {
           vm.showDetail = true;
           vm.selectedDetail = item;
+          //TweenMax.set(vm.element, { alpha:0 });
+          //TweenMax.to(vm.element, 1, { autoAlpha:1 });
         };
 
         vm.closeDetail = function () {

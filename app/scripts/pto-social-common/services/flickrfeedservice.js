@@ -38,7 +38,6 @@ angular.module('pto.social.common')
         var month = MMMM[time.getMonth()];
         var year = time.getFullYear();
         var display = date + ' ' + month + ' ' + year;
-
         return display;
       },
       getFormattedTime: function (publishedObj) {
