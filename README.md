@@ -1,2 +1,2 @@
 # flick-yer
-Coding assessment for a vegatable
+Coding assessment for a vegetable
